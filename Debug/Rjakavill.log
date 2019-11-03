@@ -1,0 +1,3 @@
+﻿  Rjakavill.cpp
+d:\_work\vlad\учебное\2.программирование\3 семестр\rjakavill\rjakavill\rjakavill.cpp(145): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Rjakavill.vcxproj -> D:\_Work\Vlad\Учебное\2.Программирование\3 семестр\Rjakavill\Debug\Rjakavill.exe
