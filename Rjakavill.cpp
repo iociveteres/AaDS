@@ -173,14 +173,14 @@ int main()
 		N = C & D;
 		M = V ^ N;
 		E = (A | B) ^ (C & D);
-	//}
+	//}dawd
 	clock_t _end = clock();
 	V.Show();
 	N.Show();
 	M.Show();
 	E.Show();
 
-	std::cout << std::endl << "Middle power = " <<
+	std::cout << std::endl << "Middle power =   " <<
 		(A.power() + B.power() + C.power() + D.power() + E.power()) / 5 <<
 		", Time = " << _end - _begin << "/" << q0 << std::endl;
 	system("pause");
