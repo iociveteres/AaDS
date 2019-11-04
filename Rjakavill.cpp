@@ -170,18 +170,19 @@ int main()
 	clock_t _begin = clock();
 	//for (long q = 0; q < q0; ++q)
 	//{
+
 	V = A | B;
 	N = C & D;
 	M = V ^ N;
 	E = (A | B) ^ (C & D);
-	//}
+
 	clock_t _end = clock();
 	V.Show();
 	N.Show();
 	M.Show();
 	E.Show();
 
-	std::cout << std::endl << "Middle power = " <<
+	std::cout << std::endl << "Middle power =   " <<
 		(A.power() + B.power() + C.power() + D.power() + E.power()) / 5 <<
 		", Time = " << _end - _begin << "/" << q0 << std::endl;
 	system("pause");
