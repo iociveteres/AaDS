@@ -8,17 +8,17 @@ class Set
 private: // закрытая часть класса - данные 
 	static const int N = 32; // мощность универсума 
 	int n; // мощность множества
-	char S, *A; // тег и память для множества
+	char S, * A; // тег и память для множества
 public: // открытая часть - функции для работы с множеством
 
-	int power() 
-	{ 
-		return n; 
+	int power()
+	{
+		return n;
 	} // получение мощности
 
-	~Set() 
-	{ 
-		delete[] A; 
+	~Set()
+	{
+		delete[] A;
 	} // деструктор
 
 	Set& operator &= (const Set& B)
@@ -28,14 +28,14 @@ public: // открытая часть - функции для работы с �
 		for (int i = 0; i < C.n; ++i)
 		{
 			for (int j = 0; j < B.n; j++)
-				if (C.A[i] == B.A[j]) 
+				if (C.A[i] == B.A[j])
 					A[n++] = C.A[i];
 		}
 		A[n] = 0; // ограничитель строки
 		return *this;
 	}
 
-	Set operator & (const Set & B) const
+	Set operator & (const Set& B) const
 	{
 		Set C(*this);
 		return (C &= B);
@@ -63,19 +63,20 @@ public: // открытая часть - функции для работы с �
 	Set& operator ^= (const Set& B)
 	{
 		Set C(*this);
-		n = 0;
 		int a = 0;
 		for (int i = 0; i < C.n; ++i)
 		{
 			for (int j = 0; j < B.n; j++)
 				if (C.A[i] == B.A[j])
 				{
-					for (int b = i; b + 1 < C.n; b++)
+					for (int b = i - a; b + 1 < C.n; b++)
 					{
-						A[b] = C.A[b + 1];
-						//a++;
+						A[b] = C.A[b + 1 + a];
+
 					}
-					A[n - 1] = '\0';
+					a++;
+					i++;
+					A[n - a] = '\0';
 				}
 		}
 		//A[n] = 0; // ограничитель строки
@@ -95,12 +96,12 @@ public: // открытая часть - функции для работы с �
 		{
 			bool f = true;
 			for (int j = 0; j < n; ++j)
-				if (c == A[j]) 
-				{ 
-					f = false; 
-					break; 
+				if (c == A[j])
+				{
+					f = false;
+					break;
 				}
-			if (f) 
+			if (f)
 				C.A[C.n++] = c;
 		}
 		C.A[C.n] = 0;
@@ -129,7 +130,7 @@ public: // открытая часть - функции для работы с �
 
 	Set(const Set& B) : S(B.S), n(B.n), A(new char[N + 1]) //конструктор копирования
 	{
-		char* s(B.A), *t(A);
+		char* s(B.A), * t(A);
 		while (*t++ = *s++);
 	}
 
@@ -137,7 +138,7 @@ public: // открытая часть - функции для работы с �
 	{
 		if (this != &B)
 		{
-			char* s(B.A), *t(A); n = B.n; S = 'R';
+			char* s(B.A), * t(A); n = B.n; S = 'R';
 			while (*t++ = *s++);
 		}
 		return *this;
@@ -169,11 +170,12 @@ int main()
 	clock_t _begin = clock();
 	//for (long q = 0; q < q0; ++q)
 	//{
-		V = A | B;
-		N = C & D;
-		M = V ^ N;
-		E = (A | B) ^ (C & D);
-	//}dawd
+
+	V = A | B;
+	N = C & D;
+	M = V ^ N;
+	E = (A | B) ^ (C & D);
+
 	clock_t _end = clock();
 	V.Show();
 	N.Show();
